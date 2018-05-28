@@ -1,0 +1,5 @@
+{
+  "powershell.scriptAnalysis.settingsPath": "./PSScriptAnalyzerSettings.psd1",
+  "files.defaultLanguage": "powershell",
+  "files.trimTrailingWhitespace": true
+}
