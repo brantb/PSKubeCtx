@@ -25,10 +25,10 @@
         "kind": "test",
         "isDefault": true
       },
-      "command": "${env:windir}/System32/WindowsPowerShell/v1.0/powershell.exe",
-      //"command": "${env:ProgramFiles}/PowerShell/6.0.0/powershell.exe",
+      "command": "${env:ProgramFiles}/PowerShell/6.0.2/pwsh.exe",
       "args": [
         "-NoProfile",
+        "-Command",
         "Invoke-Build",
         "Test",
         "-Editor VSCode"
