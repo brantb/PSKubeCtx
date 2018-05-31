@@ -5,12 +5,13 @@ $sourceFiles | ForEach-Object {
 }
 
 # Export functions matching filenames in src\public
+# Be sure to list each exported functions in the FunctionsToExport field of the module manifest file.
+# This improves performance of command discovery in PowerShell.
 $sourceFiles | Where-Object { ($_.DirectoryName | Split-Path -Leaf) -eq 'public' } | ForEach-Object {
     Export-ModuleMember -Function $_.BaseName
 }
 
-# Export only the functions using PowerShell standard verb-noun naming.
-# Be sure to list each exported functions in the FunctionsToExport field of the module manifest file.
-# This improves performance of command discovery in PowerShell.
-Export-ModuleMember -Function *-* -Alias *
+New-Alias -Name ukc -Value Use-KubectlContext
+New-Alias -Name ukn -Value Use-KubectlNamespace
 
+Export-ModuleMember -Alias ukc,ukn
