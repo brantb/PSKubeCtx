@@ -14,13 +14,15 @@ InModuleScope PSKubectl {
                     [pscustomobject]@{
                         name    = 'minikube'
                         context = [pscustomobject]@{
-                            namespace = 'default'
+                            namespace = 'namespace'
+                            cluster   = 'cluster'
+                            user      = 'user'
                         }
                     }
                 )
             }
         }
-        It 'sets the namespace in the current context' {
+        It 'updates the current context' {
             Use-KubectlNamespace -Name ignored
 
             Assert-MockCalled Invoke-Kubectl -Scope It -ParameterFilter {
@@ -28,10 +30,32 @@ InModuleScope PSKubectl {
             }
         }
 
-        It 'does nothing when the namespace is correct' {
-            Use-KubectlNamespace -Name default
+        It 'does nothing when the requested namespace is the current namespace' {
+            Use-KubectlNamespace -Name namespace
 
             Assert-MockCalled Invoke-Kubectl -Scope It -Times 0 -Exactly
+        }
+
+        Context 'Current namespace is blank' {
+            Mock Get-KubectlConfig {
+                [pscustomobject]@{
+                    'current-context' = 'minikube'
+                    contexts          = @(
+                        [pscustomobject]@{
+                            name    = 'minikube'
+                            context = [pscustomobject]@{
+                                cluster = 'cluster'
+                                user    = 'user'
+                            }
+                        }
+                    )
+                }
+            }
+            It 'defaults to "default"' {
+                Use-KubectlNamespace -Name default
+
+                Assert-MockCalled Invoke-Kubectl -Scope It -Times 0 -Exactly
+            }
         }
     }
 }

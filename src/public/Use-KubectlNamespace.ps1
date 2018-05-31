@@ -7,11 +7,14 @@ function Use-KubectlNamespace {
     )
 
     $cfg = Get-KubectlConfig
-    $current = $cfg.contexts | Where-Object { $_.name -eq $cfg['current-context'] }
+    $current = $cfg.contexts | Where-Object { $_.name -eq $cfg.'current-context' }
 
     Write-Debug "Current context/namespace: $($current.name)/$($current.context.namespace)"
 
-    if ($current.context.namespace -ne $Name) {
+    $currentNs = $current.context.namespace
+    $currentNs = if ($currentNs) { $currentNs } else { 'default' }
+
+    if ($currentNs -ne $Name) {
         Write-Verbose "Switching to namespace $Name"
         Invoke-Kubectl config, set-context, $current.name, "--namespace=$Name"
     }
