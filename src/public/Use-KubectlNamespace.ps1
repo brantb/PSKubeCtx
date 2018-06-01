@@ -1,3 +1,14 @@
+<#
+.SYNOPSIS
+Sets the namespace in the current kubectl context.
+
+.PARAMETER Name
+The namespace to use.
+
+.EXAMPLE
+PS> ukn kube-system
+Changes the namespace in the current context to 'kube-system'.
+#>
 function Use-KubectlNamespace {
     [CmdletBinding()]
     param (

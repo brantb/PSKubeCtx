@@ -1,3 +1,7 @@
+<#
+.SYNOPSIS
+Displays current kubeconfig settings.
+#>#
 function Get-KubectlConfig {
     [CmdletBinding()] param ()
 
