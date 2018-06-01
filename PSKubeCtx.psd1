@@ -12,7 +12,7 @@
     RootModule        = 'PSKubeCtx.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.1'
+    ModuleVersion     = '0.1.0'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -27,10 +27,10 @@
     CompanyName       = 'iQmetrix'
 
     # Copyright statement for this module
-    Copyright         = '(c) Brant Bobby. All rights reserved.'
+    Copyright         = '(c) iQmetrix. All rights reserved.'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description = 'A utility to manage and switch between kubectl contexts'
 
     # Minimum version of the PowerShell engine required by this module
     PowerShellVersion = '5.0'
@@ -99,13 +99,15 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            # Tags = @()
+            Tags = @('Kubernetes', 'kubectl')
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/iQmetrix/PSKubeCtx/blob/master/LICENSE.md'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            ProjectUri = 'https://github.com/iQmetrix/PSKubeCtx'
+
+            Prerelease = 'preview'
 
             # A URL to an icon representing this module.
             # IconUri = ''

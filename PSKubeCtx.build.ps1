@@ -1,11 +1,8 @@
 param(
-    $RepositoryUri = 'https://packages.iqmetrix.com/nuget/powershell',
-    $RepositoryName = 'iQmetrix',
+    $RepositoryName = 'PSGallery',
     $NuGetApiKey,
     $Editor
 )
-
-. PowerShellGallery.tasks
 
 $moduleName = 'PSKubeCtx'
 $buildDest = Join-Path $BuildRoot "build\$moduleName"
@@ -35,7 +32,7 @@ task CopyToOutput @{
     Jobs    = {
         begin {
             # Create empty directories
-            $Outputs | Split-Path -Parent | Select -Unique | ForEach-Object { mkdir -Force $_ } | Out-Null
+            $Outputs | Split-Path -Parent | Select-Object -Unique | ForEach-Object { mkdir -Force $_ } | Out-Null
         }
         process { Copy-Item $_ $2 }
     }
@@ -58,7 +55,7 @@ task Test Build, {
 }
 
 # Synopsis: Publish the module to the iQmetrix PowerShell repository
-task Publish Clean, Build, Test, RegisterPSRepository, {
+task Publish Clean, Build, Test, {
     $manifestPath = Join-Path $buildDest "$moduleName.psd1"
     $manifest = Test-ModuleManifest $manifestPath
 
