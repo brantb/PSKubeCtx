@@ -1,6 +1,6 @@
 #Requires -Module @{ ModuleName='Pester'; ModuleVersion='4.3'}
 
-InModuleScope PSKubeCtl {
+InModuleScope PSKubectx {
     . "$PSScriptRoot\Helpers.ps1"
 
     Describe 'Use-KubectlContext' {
@@ -28,7 +28,7 @@ InModuleScope PSKubeCtl {
         }
 
         Context 'The context does not exist' {
-            Mock Invoke-Kubectl -ModuleName PSKubeCtl {
+            Mock Invoke-Kubectl -ModuleName PSKubeCtx {
                 Write-Error "error: no context exists with the name: `"$Name`"."
             }
             It 'writes an error' {

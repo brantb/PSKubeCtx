@@ -1,6 +1,6 @@
 #Requires -Module @{ ModuleName='Pester'; ModuleVersion='4.3'}
 
-InModuleScope PSKubeCtl {
+InModuleScope PSKubectx {
     . "$PSScriptRoot\Helpers.ps1"
 
     Describe 'Get-KubectlConfig' {

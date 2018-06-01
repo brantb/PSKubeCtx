@@ -1,6 +1,6 @@
 #Requires -Module @{ ModuleName='Pester'; ModuleVersion='4.3'}
 
-InModuleScope PSKubectl {
+InModuleScope PSKubeCtx {
     . "$PSScriptRoot\Helpers.ps1"
 
     Describe 'Use-KubectlNamespace' {

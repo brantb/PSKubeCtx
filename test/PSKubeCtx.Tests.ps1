@@ -1,5 +1,5 @@
 #Requires -Module @{ ModuleName='Pester'; ModuleVersion='4.3'}
-$ModuleName = 'PSKubectl'
+$ModuleName = 'PSKubeCtx'
 $ModulePath = Join-Path $PSScriptRoot "..\build\$ModuleName\" | Resolve-Path
 $ModuleManifestPath = Join-Path $ModulePath "$ModuleName.psd1"
 

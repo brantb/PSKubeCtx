@@ -7,7 +7,7 @@ param(
 
 . PowerShellGallery.tasks
 
-$moduleName = 'PSKubectl'
+$moduleName = 'PSKubeCtx'
 $buildDest = Join-Path $BuildRoot "build\$moduleName"
 
 # Synopsis: Clean the build destination folder
