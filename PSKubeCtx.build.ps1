@@ -54,7 +54,7 @@ task Test Build, {
     Invoke-Pester -PesterOption $pesterOption
 }
 
-# Synopsis: Publish the module to the iQmetrix PowerShell repository
+# Synopsis: Publish the module to the PowerShell Gallery
 task Publish Clean, Build, Test, {
     $manifestPath = Join-Path $buildDest "$moduleName.psd1"
     $manifest = Test-ModuleManifest $manifestPath
