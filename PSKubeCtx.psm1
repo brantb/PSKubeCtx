@@ -14,4 +14,4 @@ $sourceFiles | Where-Object { ($_.DirectoryName | Split-Path -Leaf) -eq 'public'
 New-Alias -Name ukc -Value Use-KubectlContext
 New-Alias -Name ukn -Value Use-KubectlNamespace
 
-Export-ModuleMember -Alias ukc,ukn
+Export-ModuleMember -Alias ukc, ukn

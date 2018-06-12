@@ -4,27 +4,62 @@ InModuleScope PSKubectx {
     . "$PSScriptRoot\Helpers.ps1"
 
     Describe 'Get-KubectlConfig' {
-        Mock Invoke-Kubectl {
-            [pscustomobject]@{
-                'current-context' = 'minikube'
-                contexts          = @(
-                    [pscustomobject]@{
-                        name    = 'minikube'
-                        context = [pscustomobject]@{
-                            cluster   = 'minikube'
-                            user      = 'minikube'
-                            namespace = 'default'
+        Context 'happy path' {
+            Mock Invoke-Kubectl {
+                [pscustomobject]@{
+                    'current-context' = 'minikube'
+                    contexts          = @(
+                        [pscustomobject]@{
+                            name    = 'minikube'
+                            context = [pscustomobject]@{
+                                cluster   = 'minikube-cluster'
+                                user      = 'minikube-user'
+                                namespace = 'kube-system'
+                            }
                         }
-                    }
-                )
-            } | ConvertTo-Json
+                        [pscustomobject]@{
+                            name    = 'aks'
+                            context = [pscustomobject]@{
+                                cluster   = 'aks-cluster'
+                                user      = 'aks-user'
+                                namespace = 'default'
+                            }
+                        }
+                    )
+                } | ConvertTo-Json -depth 100
+            }
+
+            It 'gets the current config' {
+                Get-KubectlConfig | Should -Not -BeNullOrEmpty
+
+                Assert-MockCalled Invoke-Kubectl -Scope It -ParameterFilter {
+                    Test-ArrayEquality $Arguments 'config', 'view', '--output', 'json'
+                }
+            }
+
+            It 'adds a current-namespace property' {
+                $config = Get-KubectlConfig
+                $config.'current-namespace' | Should -BeExactly 'kube-system'
+            }
+
         }
 
-        It 'gets the current config' {
-            Get-KubectlConfig | Should -Not -BeNullOrEmpty
+        Context 'current context has no explicit namespace' {
+            Mock Invoke-Kubectl {
+                [PSCustomObject]@{
+                    'current-context' = 'context'
+                    contexts          = @(
+                        [PSCustomObject]@{
+                            name = 'context'
+                            user = 'user'
+                        }
+                    )
+                } | ConvertTo-Json -Depth 100
+            }
 
-            Assert-MockCalled Invoke-Kubectl -Scope It -ParameterFilter {
-                Test-ArrayEquality $Arguments 'config', 'view', '--output', 'json'
+            It 'defaults to the "default" namespace' {
+                $config = Get-KubectlConfig
+                $config.'current-namespace' | Should -BeExactly 'default'
             }
         }
     }

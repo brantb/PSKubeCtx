@@ -30,7 +30,7 @@
     Copyright         = '(c) iQmetrix. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description = 'A utility to manage and switch between kubectl contexts'
+    Description       = 'A utility to manage and switch between kubectl contexts'
 
     # Minimum version of the PowerShell engine required by this module
     PowerShellVersion = '5.0'
@@ -51,7 +51,9 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    # RequiredModules = @()
+    RequiredModules   = @(
+        'Configuration'
+    )
 
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()
@@ -73,6 +75,9 @@
         'Get-KubectlConfig'
         'Use-KubectlContext'
         'Use-KubectlNamespace'
+        'Write-PSKubeCtxPowerline'
+        'Set-PSKubeCtxPromptSetting'
+        'Get-PSKubeCtxPromptSetting'
     )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -99,7 +104,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('Kubernetes', 'kubectl')
+            Tags       = @('Kubernetes', 'kubectl')
 
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/iQmetrix/PSKubeCtx/blob/master/LICENSE.md'
