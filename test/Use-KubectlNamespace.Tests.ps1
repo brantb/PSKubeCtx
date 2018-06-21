@@ -51,7 +51,7 @@ InModuleScope PSKubeCtx {
                     )
                 }
             }
-            It 'defaults to "default"' {
+            It 'treats a blank namespace as "default"' {
                 Use-KubectlNamespace -Name default
 
                 Assert-MockCalled Invoke-Kubectl -Scope It -Times 0 -Exactly
