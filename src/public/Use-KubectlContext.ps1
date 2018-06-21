@@ -16,7 +16,8 @@ Uses the context for the minikube cluster.
 function Use-KubectlContext {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0,
+            HelpMessage = "Enter the context to switch to.")]
         [ValidateNotNullOrEmpty()]
         [string] $Name
     )

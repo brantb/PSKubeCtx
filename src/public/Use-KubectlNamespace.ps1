@@ -12,7 +12,8 @@ Changes the namespace in the current context to 'kube-system'.
 function Use-KubectlNamespace {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory, Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0,
+            HelpMessage = "Enter the namespace to switch to.")]
         [ValidateNotNullOrEmpty()]
         [string]$Name
     )
