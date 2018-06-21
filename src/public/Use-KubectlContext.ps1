@@ -21,5 +21,5 @@ function Use-KubectlContext {
         [string] $Name
     )
 
-    Invoke-Kubectl config, use-context, $Name | Write-Information
+    Invoke-Kubectl config, use-context, $Name
 }

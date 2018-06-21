@@ -16,29 +16,6 @@ InModuleScope PSKubectx {
                     Test-ArrayEquality $Arguments 'config', 'use-context', 'expected'
                 }
             }
-
-            It 'has no output' {
-                Use-KubectlContext -Name ignored | Should -BeNull
-            }
-
-            It 'writes to the information stream' {
-                $infoStream = Use-KubectlContext -Name ignored 6>&1
-                $infoStream | Should -Match "Switched to context"
-            }
-        }
-
-        Context 'The context does not exist' {
-            Mock Invoke-Kubectl -ModuleName PSKubeCtx {
-                Write-Error "error: no context exists with the name: `"$Name`"."
-            }
-            It 'writes an error' {
-                $errStream = Use-KubectlContext -Name nosuchcontext 2>&1
-                $errStream | Should -Match "no context exists"
-            }
-            It 'does not write information' {
-                $infoStream = Use-KubectlContext -Name nosuchcontext 6>&1 -ErrorAction SilentlyContinue
-                $infoStream | Should -BeNull
-            }
         }
     }
 }
