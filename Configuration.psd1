@@ -1,3 +1,4 @@
+# Default configuration values for Import-Configuration
 @{
     # nf-mdi-ship_wheel glyph from Nerd Fonts (Unicode FD31)
     ContextPrefix          = "&#xFD31; "
@@ -10,4 +11,6 @@
     NamespaceBackground    = $null
 
     HideNamespaceIfDefault = $false
+
+    PowerLineSupport       = $true
 }

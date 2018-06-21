@@ -37,7 +37,9 @@ function Set-PSKubeCtxPromptSetting {
         [string] $NamespaceForeground,
         # Background color of namespace.
         [Alias('NBg')]
-        [string] $NamespaceBackground
+        [string] $NamespaceBackground,
+        # Enable automatic PowerLine support
+        [switch] $PowerLineSupport
     )
 
     $config = GetConfiguration
@@ -52,6 +54,7 @@ function Set-PSKubeCtxPromptSetting {
         'NamespaceForeground' { $config.$_ = $PSBoundParameters[$_] }
         'NamespaceBackground' { $config.$_ = $PSBoundParameters[$_] }
         'HideNamespaceIfDefault' { $config.$_ = [bool]$PSBoundParameters[$_] }
+        'PowerLineSupport' { $config.$_ = [bool]$PSBoundParameters[$_] }
     }
 
     Export-Configuration $config

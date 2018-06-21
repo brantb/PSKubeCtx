@@ -15,3 +15,5 @@ New-Alias -Name ukc -Value Use-KubectlContext
 New-Alias -Name ukn -Value Use-KubectlNamespace
 
 Export-ModuleMember -Alias ukc, ukn
+
+Add-KubePrompt
