@@ -61,7 +61,7 @@ task Publish Clean, Build, Test, {
     $manifest = Test-ModuleManifest $manifestPath
 
     # Ensure the version number has been updated
-    Test-ModulePublished -Name $moduleName -Version $manifest.Version -Repository $RepositoryName -AssertUnpublished
+    Test-ModulePublished -Name $moduleName -Version $manifest.Version -Repository $RepositoryName -AssertUnpublished | Out-Null
 
     Publish-Module -Verbose -Path $buildDest -NuGetApiKey (property NuGetApiKey) -Repository $RepositoryName
 }
