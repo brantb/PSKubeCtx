@@ -14,7 +14,7 @@
   "tasks": [
     {
       "label": "Pester",
-      "type": "shell",
+      "type": "process",
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -25,7 +25,7 @@
         "kind": "test",
         "isDefault": true
       },
-      "command": "${env:ProgramFiles}/PowerShell/6.0.2/pwsh.exe",
+      "command": "${env:ProgramFiles}/PowerShell/6/pwsh.exe",
       "args": [
         "-NoProfile",
         "-Command",
