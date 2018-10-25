@@ -25,6 +25,7 @@ task CopyToOutput @{
         Get-ChildItem -Path "$BuildRoot\src" -Recurse -File
         Get-Item -Path "$BuildRoot\$moduleName.psd1"
         Get-Item -Path "$BuildRoot\$moduleName.psm1"
+        Get-Item -Path "$BuildRoot\Configuration.psd1"
     }
     Outputs = {
         process { $_.Replace($BuildRoot, $buildDest) }
