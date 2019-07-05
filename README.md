@@ -16,7 +16,7 @@ PSKubeCtx provides the following cmdlets to manage your kubectl context:
 
 PSKubeCtx will automatically add the current Kubernetes context/namespace to your PowerShell prompt if the [PowerLine][powerline] module is available. The formatting and coloring can be customized using the `Set-PSKubeCtxPromptSetting` cmdlet (or disabled entirely).
 
-[powerline]: (https://github.com/Jaykul/PowerLine)
+[powerline]: https://github.com/Jaykul/PowerLine
 
 ## Installing from the PowerShell Gallery
 
